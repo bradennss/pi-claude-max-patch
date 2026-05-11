@@ -9,7 +9,7 @@ PATCHES_DIR="$SCRIPT_DIR/patches"
 PI_ROOT="$(npm root -g)/@earendil-works/pi-coding-agent"
 
 if [ ! -d "$PI_ROOT" ]; then
-    echo "Error: Pi not found at $PI_ROOT" >&2
+    echo "Pi not found at $PI_ROOT." >&2
     echo "Install it first: npm install -g @earendil-works/pi-coding-agent" >&2
     exit 1
 fi
@@ -18,8 +18,8 @@ PI_VERSION=$(node -e "console.log(require('$PI_ROOT/package.json').version)")
 echo "Pi install: $PI_ROOT (v$PI_VERSION)"
 
 if [ "$PI_VERSION" != "$EXPECTED_VERSION" ]; then
-    echo "warning: patches were built for v$EXPECTED_VERSION, current is v$PI_VERSION" >&2
-    echo "patches may fail or produce incorrect results" >&2
+    echo "Patches were built for v$EXPECTED_VERSION, current is v$PI_VERSION." >&2
+    echo "Patches may fail or produce incorrect results." >&2
     read -rp "Continue? [y/N] " confirm
     if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
         exit 1
@@ -33,18 +33,18 @@ for patch_file in "$PATCHES_DIR"/*.patch; do
 
     if patch -d "$PI_ROOT" --dry-run --forward -p1 < "$patch_file" > /dev/null 2>&1; then
         patch -d "$PI_ROOT" --forward -p1 < "$patch_file"
-        echo "  ok: $name"
+        echo "  Ok: $name"
     elif patch -d "$PI_ROOT" --dry-run -R -p1 < "$patch_file" > /dev/null 2>&1; then
-        echo "skip: $name (already applied)"
+        echo "Skip: $name (already applied)"
     else
-        echo "FAIL: $name" >&2
+        echo "Failed: $name" >&2
         FAILED=1
     fi
 done
 
 if [ "$FAILED" -ne 0 ]; then
-    echo "some patches failed to apply" >&2
+    echo "Some patches failed to apply." >&2
     exit 1
 fi
 
-echo "done"
+echo "Done."
