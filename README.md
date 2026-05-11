@@ -7,9 +7,5 @@ Built for Pi v0.74.0.
 ## Usage
 
 ```sh
-# Apply after installing or updating Pi
 ./apply.sh
-
-# Revert all patches
-./revert.sh
 ```
