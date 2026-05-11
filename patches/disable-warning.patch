@@ -1,0 +1,35 @@
+--- a/dist/modes/interactive/interactive-mode.js	1985-10-26 04:15:00
++++ b/dist/modes/interactive/interactive-mode.js	2026-05-10 19:32:33
+@@ -3290,31 +3290,9 @@
+     }
+     async maybeWarnAboutAnthropicSubscriptionAuth(model = this.session.model) {
+         if (this.settingsManager.getWarnings().anthropicExtraUsage === false) {
+-            return;
+-        }
+-        if (this.anthropicSubscriptionWarningShown) {
+-            return;
+-        }
+-        if (!model || model.provider !== "anthropic") {
+-            return;
+-        }
+-        const storedCredential = this.session.modelRegistry.authStorage.get("anthropic");
+-        if (storedCredential?.type === "oauth") {
+-            this.anthropicSubscriptionWarningShown = true;
+-            this.showWarning(ANTHROPIC_SUBSCRIPTION_AUTH_WARNING);
+             return;
+         }
+-        try {
+-            const apiKey = await this.session.modelRegistry.getApiKeyForProvider(model.provider);
+-            if (!isAnthropicSubscriptionAuthKey(apiKey)) {
+-                return;
+-            }
+-            this.anthropicSubscriptionWarningShown = true;
+-            this.showWarning(ANTHROPIC_SUBSCRIPTION_AUTH_WARNING);
+-        }
+-        catch {
+-            // Ignore auth lookup failures for warning-only checks.
+-        }
++        return;
+     }
+     showModelSelector(initialSearchInput) {
+         this.showSelector((done) => {

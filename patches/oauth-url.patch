@@ -1,0 +1,11 @@
+--- a/node_modules/@earendil-works/pi-ai/dist/utils/oauth/anthropic.js	1985-10-26 04:15:00
++++ b/node_modules/@earendil-works/pi-ai/dist/utils/oauth/anthropic.js	2026-05-10 19:04:45
+@@ -10,7 +10,7 @@
+ let nodeApisPromise = null;
+ const decode = (s) => atob(s);
+ const CLIENT_ID = decode("OWQxYzI1MGEtZTYxYi00NGQ5LTg4ZWQtNTk0NGQxOTYyZjVl");
+-const AUTHORIZE_URL = "https://claude.ai/oauth/authorize";
++const AUTHORIZE_URL = "https://claude.com/cai/oauth/authorize";
+ const TOKEN_URL = "https://platform.claude.com/v1/oauth/token";
+ const CALLBACK_HOST = process.env.PI_OAUTH_CALLBACK_HOST || "127.0.0.1";
+ const CALLBACK_PORT = 53692;
