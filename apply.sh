@@ -1,12 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+AUTO_YES=false
+while getopts "y" opt; do
+    case $opt in
+        y) AUTO_YES=true ;;
+    esac
+done
+
 EXPECTED_VERSION="0.74.0"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PATCHES_DIR="$SCRIPT_DIR/patches"
 
-PI_ROOT="$(npm root -g)/@earendil-works/pi-coding-agent"
+PI_ROOT="$(npm root -g | tr '\\' '/')/@earendil-works/pi-coding-agent"
 
 if [ ! -d "$PI_ROOT" ]; then
     echo "Pi not found at $PI_ROOT." >&2
@@ -20,9 +27,11 @@ echo "Pi install: $PI_ROOT (v$PI_VERSION)"
 if [ "$PI_VERSION" != "$EXPECTED_VERSION" ]; then
     echo "Patches were built for v$EXPECTED_VERSION, current is v$PI_VERSION." >&2
     echo "Patches may fail or produce incorrect results." >&2
-    read -rp "Continue? [y/N] " confirm
-    if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
-        exit 1
+    if [ "$AUTO_YES" = false ]; then
+        read -rp "Continue? [y/N] " confirm
+        if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+            exit 1
+        fi
     fi
 fi
 
