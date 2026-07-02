@@ -1,5 +1,5 @@
---- a/node_modules/@earendil-works/pi-ai/dist/providers/anthropic.js	2026-06-06 17:42:13.748642666 +0000
-+++ b/node_modules/@earendil-works/pi-ai/dist/providers/anthropic.js	2026-06-06 17:42:13.750642868 +0000
+--- a/node_modules/@earendil-works/pi-ai/dist/api/anthropic-messages.js	2026-07-02 01:21:39
++++ b/node_modules/@earendil-works/pi-ai/dist/api/anthropic-messages.js	2026-07-02 01:22:18
 @@ -1,3 +1,4 @@
 +import { createHash } from "crypto";
  import Anthropic from "@anthropic-ai/sdk";
@@ -33,7 +33,7 @@
  // Claude Code 2.x tool names (canonical casing)
  // Source: https://cchistory.mariozechner.at/data/prompts-2.1.11.md
  // To update: https://github.com/badlogic/cchistory
-@@ -636,7 +656,7 @@
+@@ -645,7 +665,7 @@
                  accept: "application/json",
                  "anthropic-dangerous-direct-browser-access": "true",
                  "anthropic-beta": ["claude-code-20250219", "oauth-2025-04-20", ...betaFeatures].join(","),
@@ -42,7 +42,7 @@
                  "x-app": "cli",
              }, model.headers, optionsHeaders),
          });
-@@ -666,22 +686,22 @@
+@@ -676,22 +696,22 @@
          max_tokens: options?.maxTokens ?? model.maxTokens,
          stream: true,
      };
