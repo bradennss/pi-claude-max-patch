@@ -52,9 +52,9 @@
 +    // text block; multi-block system prompts trigger extra usage billing.
      if (isOAuthToken) {
 +        const attribution = buildAttributionHeader(context.messages);
-+        const prefix = \`\${attribution}\n\nYou are Claude Code, Anthropic's official CLI for Claude.\`;
++        const prefix = `${attribution}\n\nYou are Claude Code, Anthropic's official CLI for Claude.`;
 +        const fullSystemText = context.systemPrompt
-+            ? \`\${prefix}\n\n\${sanitizeSurrogates(context.systemPrompt)}\`
++            ? `${prefix}\n\n${sanitizeSurrogates(context.systemPrompt)}`
 +            : prefix;
          params.system = [
              {
