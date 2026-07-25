@@ -1,25 +1,22 @@
---- a/dist/modes/interactive/interactive-mode.js	1985-10-26 04:15:00
-+++ b/dist/modes/interactive/interactive-mode.js	2026-05-10 19:32:33
-@@ -3290,31 +3290,9 @@
-     }
-     async maybeWarnAboutAnthropicSubscriptionAuth(model = this.session.model) {
+--- a/dist/modes/interactive/interactive-mode.js	2026-07-24 20:58:08
++++ b/dist/modes/interactive/interactive-mode.js	2026-07-24 20:59:18
+@@ -3615,28 +3615,7 @@
          if (this.settingsManager.getWarnings().anthropicExtraUsage === false) {
--            return;
--        }
+             return;
+         }
 -        if (this.anthropicSubscriptionWarningShown) {
 -            return;
 -        }
 -        if (!model || model.provider !== "anthropic") {
 -            return;
 -        }
--        const storedCredential = this.session.modelRegistry.authStorage.get("anthropic");
--        if (storedCredential?.type === "oauth") {
--            this.anthropicSubscriptionWarningShown = true;
--            this.showWarning(ANTHROPIC_SUBSCRIPTION_AUTH_WARNING);
-             return;
-         }
 -        try {
--            const apiKey = await this.session.modelRegistry.getApiKeyForProvider(model.provider);
+-            if ((await this.session.modelRuntime.checkAuth("anthropic"))?.type === "oauth") {
+-                this.anthropicSubscriptionWarningShown = true;
+-                this.showWarning(ANTHROPIC_SUBSCRIPTION_AUTH_WARNING);
+-                return;
+-            }
+-            const apiKey = (await this.session.modelRuntime.getAuth(model.provider))?.auth.apiKey;
 -            if (!isAnthropicSubscriptionAuthKey(apiKey)) {
 -                return;
 -            }
@@ -31,5 +28,5 @@
 -        }
 +        return;
      }
-     showModelSelector(initialSearchInput) {
-         this.showSelector((done) => {
+     maybeSaveImplicitProjectTrustAfterReload() {
+         const cwd = this.sessionManager.getCwd();
