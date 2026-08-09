@@ -1,6 +1,6 @@
---- a/dist/modes/interactive/interactive-mode.js	2026-07-24 20:58:08
-+++ b/dist/modes/interactive/interactive-mode.js	2026-07-24 20:59:18
-@@ -3615,28 +3615,7 @@
+--- a/dist/modes/interactive/interactive-mode.js
++++ b/dist/modes/interactive/interactive-mode.js
+@@ -3877,28 +3877,7 @@
          if (this.settingsManager.getWarnings().anthropicExtraUsage === false) {
              return;
          }

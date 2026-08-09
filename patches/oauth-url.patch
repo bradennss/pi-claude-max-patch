@@ -1,5 +1,5 @@
---- a/node_modules/@earendil-works/pi-ai/dist/auth/oauth/anthropic.js	2026-07-24 20:58:08
-+++ b/node_modules/@earendil-works/pi-ai/dist/auth/oauth/anthropic.js	2026-07-24 20:59:24
+--- a/node_modules/@earendil-works/pi-ai/dist/auth/oauth/anthropic.js
++++ b/node_modules/@earendil-works/pi-ai/dist/auth/oauth/anthropic.js
 @@ -11,7 +11,7 @@
  let nodeApisPromise = null;
  const decode = (s) => atob(s);

@@ -8,7 +8,7 @@ while getopts "y" opt; do
     esac
 done
 
-EXPECTED_VERSION="0.82.0"
+EXPECTED_VERSION="0.84.1"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PATCHES_DIR="$SCRIPT_DIR/patches"
