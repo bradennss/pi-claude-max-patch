@@ -1,6 +1,6 @@
 --- a/dist/modes/interactive/interactive-mode.js
 +++ b/dist/modes/interactive/interactive-mode.js
-@@ -3877,28 +3877,7 @@
+@@ -3927,28 +3927,7 @@
          if (this.settingsManager.getWarnings().anthropicExtraUsage === false) {
              return;
          }

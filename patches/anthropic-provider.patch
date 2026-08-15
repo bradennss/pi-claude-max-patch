@@ -5,7 +5,7 @@
  import Anthropic from "@anthropic-ai/sdk";
  import { calculateCost } from "../models.js";
  import { splitDeferredTools } from "../utils/deferred-tools.js";
-@@ -36,7 +37,26 @@
+@@ -37,7 +38,26 @@
      };
  }
  // Stealth mode: Mimic Claude Code's tool naming exactly
@@ -33,7 +33,7 @@
  // Claude Code 2.x tool names (canonical casing)
  // Source: https://cchistory.mariozechner.at/data/prompts-2.1.11.md
  // To update: https://github.com/badlogic/cchistory
-@@ -678,7 +698,7 @@
+@@ -690,7 +710,7 @@
                  accept: "application/json",
                  "anthropic-dangerous-direct-browser-access": "true",
                  "anthropic-beta": ["claude-code-20250219", "oauth-2025-04-20", ...betaFeatures].join(","),
@@ -42,7 +42,7 @@
                  "x-app": "cli",
              }, model.headers, optionsHeaders),
          });
-@@ -720,22 +740,22 @@
+@@ -732,22 +752,22 @@
          max_tokens: options?.maxTokens ?? model.maxTokens,
          stream: true,
      };
